@@ -4,3 +4,4 @@ pdfplumber
 selenium
 webdriver-manager
 requests
+BeautifulSoup
