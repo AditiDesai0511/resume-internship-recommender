@@ -1,0 +1,6 @@
+flask
+flask-cors
+pdfplumber
+selenium
+webdriver-manager
+requests
