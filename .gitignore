@@ -1,5 +1,9 @@
+
+.env
+*/.env
+
 venv/
+ai_service/venv/
 __pycache__/
 *.pyc
-.env
 uploads/

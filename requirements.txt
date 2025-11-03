@@ -4,4 +4,7 @@ pdfplumber
 selenium
 webdriver-manager
 requests
-BeautifulSoup
+beautifulsoup4
+python-dotenv
+redis
+groq
