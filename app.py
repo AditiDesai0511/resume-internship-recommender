@@ -28,9 +28,28 @@ def recommend():
     text = extract_text_from_pdf(path)
     skills = extract_skills(text)
     
+    if not skills:
+        return jsonify({
+            "skills_detected": [],
+            "internships_found": 0,
+            "internships": []
+        })
+    
     all_internships = []
     for skill in skills[:5]:  
-        all_internships.extend(scrape_internshala_html(skill))
+        try:
+            all_internships.extend(scrape_internshala_html(skill))
+        except Exception:
+            all_internships.extend([
+                {
+                    "skill": skill,
+                    "title": f"{skill.title()} Internship",
+                    "company": "Not Available",
+                    "location": "Remote/Hybrid",
+                    "stipend": "Not Mentioned",
+                    "apply_link": "https://internshala.com/internships/"
+                }
+            ])
 
     return jsonify({
         "skills_detected": skills,

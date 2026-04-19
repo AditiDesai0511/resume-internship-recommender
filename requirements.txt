@@ -8,3 +8,7 @@ beautifulsoup4
 python-dotenv
 redis
 groq
+beautifulsoup4
+pdf2image
+pillow
+pytesseract
