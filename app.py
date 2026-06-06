@@ -29,8 +29,15 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app = Flask(__name__)
 CORS(app)
 
-AI_SERVICE_URL = "http://127.0.0.1:5002"
-API_TOKEN = "secret123"
+AI_SERVICE_URL = os.getenv("AI_SERVICE_URL", "http://127.0.0.1:5002")
+API_TOKEN = os.getenv("AI_SERVICE_TOKEN", "secret123")
+
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({
+        "status": "ok",
+        "ai_service_url": AI_SERVICE_URL
+    })
 
 @app.route("/debug-card", methods=["GET"])
 def debug_card():
@@ -322,4 +329,4 @@ Resume:
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5000")), debug=False)
